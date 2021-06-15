@@ -31,4 +31,10 @@ int partition(int *array, int start, int end, size_t size);
 void shell_sort(int *array, size_t size);
 void swap_list(listint_t **list, listint_t **cur_node);
 void cocktail_sort_list(listint_t **list);
+int max_value(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void merge(int *array, int start, int mid, int end);
+void do_merge_sort(int *array, int start, int end);
+void merge_sort(int *array, size_t size);
+void print_my_array(int *array, int start, int end);
 #endif
