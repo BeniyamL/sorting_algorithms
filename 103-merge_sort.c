@@ -64,8 +64,7 @@ void merge(int *array, int start, int mid, int end)
 	int l = 0, r = 0, i = start, s1 = (mid - start) + 1, s2 = end - mid;
 	int *left, *right;
 
-	left = mem_arr(s1);
-	right = mem_arr(s2);
+	left = mem_arr(s1), right = mem_arr(s2);
 	for (l = 0; l < s1; l++)
 		left[l] = array[l + start];
 	for (r = 0; r < s2; r++)
