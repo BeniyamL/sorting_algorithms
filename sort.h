@@ -37,4 +37,7 @@ void merge(int *array, int start, int mid, int end);
 void do_merge_sort(int *array, int start, int end);
 void merge_sort(int *array, size_t size);
 void print_my_array(int *array, int start, int end);
+void radix_sort(int *array, size_t size);
+int get_max(int *array, size_t size);
+void countSort(int *array, size_t size,int base);
 #endif
