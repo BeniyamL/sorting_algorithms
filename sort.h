@@ -13,9 +13,9 @@
  */
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 void print_array(const int *array, size_t size);
@@ -39,5 +39,5 @@ void merge_sort(int *array, size_t size);
 void print_my_array(int *array, int start, int end);
 void radix_sort(int *array, size_t size);
 int get_max(int *array, size_t size);
-void countSort(int *array, size_t size,int base);
+void countSort(int *array, size_t size, int base);
 #endif
