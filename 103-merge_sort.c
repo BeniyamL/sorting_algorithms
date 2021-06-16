@@ -35,6 +35,22 @@ void do_merge_sort(int *array, int start, int end)
 	}
 }
 /**
+ * mem_arr- functin to create allocated array
+ * @size: the size of array
+ *
+ * Return: the allocated array
+ **/
+int *mem_arr(int size)
+{
+	int *arr;
+
+	arr = malloc(sizeof(int) * (size + 1));
+	if (arr == NULL)
+		return (NULL);
+	else
+		return (arr);
+}
+/**
  * merge - function to merge the divided elements
  * @array: the given array
  * @start: the start index of the array
@@ -46,8 +62,10 @@ void do_merge_sort(int *array, int start, int end)
 void merge(int *array, int start, int mid, int end)
 {
 	int l = 0, r = 0, i = start, s1 = (mid - start) + 1, s2 = end - mid;
-	int left[s1], right[s2];
+	int *left, *right;
 
+	left = mem_arr(s1);
+	right = mem_arr(s2);
 	for (l = 0; l < s1; l++)
 		left[l] = array[l + start];
 	for (r = 0; r < s2; r++)

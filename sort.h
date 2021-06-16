@@ -40,4 +40,5 @@ void print_my_array(int *array, int start, int end);
 void radix_sort(int *array, size_t size);
 int get_max(int *array, size_t size);
 void countSort(int *array, size_t size, int base);
+int *mem_arr(int size);
 #endif
