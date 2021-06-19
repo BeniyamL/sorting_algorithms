@@ -7,11 +7,12 @@
  **/
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *cur = *list, *tmp, *next_node, *lastStop = NULL;
+	listint_t *cur, *tmp, *next_node, *lastStop = NULL;
 	int flag = 0;
 
-	if (cur == NULL || list == NULL || cur->next == NULL)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
+	cur = *list;
 	while (cur && cur->next)
 	{
 		next_node = cur->next;
@@ -41,8 +42,7 @@ void insertion_sort_list(listint_t **list)
 		}
 		if (flag == 1)
 		{
-			cur = lastStop;
-			flag = 0;
+			cur = lastStop, flag = 0;
 		}
 		else
 			cur = cur->next;

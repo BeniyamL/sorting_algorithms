@@ -8,11 +8,13 @@
  **/
 void merge_sort(int *array, size_t size)
 {
-	int start = 0, end = size - 1;
+	int start = 0, end = size - 1, *buf;
 
 	if (size < 2)
 		return;
-	do_merge_sort(array, start, end);
+	buf = mem_arr(size);
+	do_merge_sort(array, buf, start, end);
+	free(buf);
 }
 /**
  * do_merge_sort - function to perform merge sort
@@ -22,16 +24,16 @@ void merge_sort(int *array, size_t size)
  *
  * Return: nothing
  **/
-void do_merge_sort(int *array, int start, int end)
+void do_merge_sort(int *array, int *buf, int start, int end)
 {
 	int mid;
 
 	if (start < end)
 	{
 		mid = start + (end - start) / 2;
-		do_merge_sort(array, start, mid);
-		do_merge_sort(array, mid + 1, end);
-		merge(array, start, mid, end);
+		do_merge_sort(array, buf, start, mid);
+		do_merge_sort(array, buf, mid + 1, end);
+		merge(array, buf, start, mid, end);
 	}
 }
 /**
@@ -59,44 +61,42 @@ int *mem_arr(int size)
  *
  * Return: nothing
  **/
-void merge(int *array, int start, int mid, int end)
+void merge(int *array, int *buf, int start, int mid, int end)
 {
-	int l = 0, r = 0, i = start, s1 = (mid - start) + 1, s2 = end - mid;
-	int *left, *right;
+	int l = 0, i = start, s1 = (mid - start) + 1, s2 = end - mid, r = s2;
 
-	left = mem_arr(s1), right = mem_arr(s2);
-	for (l = 0; l < s1; l++)
-		left[l] = array[l + start];
-	for (r = 0; r < s2; r++)
-		right[r] = array[r + mid + 1];
-	l = 0, r = 0;
+	for (l = 0; l < s1 ; l++)
+		buf[l] = array[l + start];
+	for (r = s1; r <= end; r++)
+		buf[r] = array[r];
+	l = 0, r = s1;
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(left, s1);
+	print_my_array(array, start, s1);
 	printf("[right]: ");
-	print_array(right, s2);
-	while (l < s1 && r < s2)
+	print_my_array(array, r, end + 1);
+	while (l < s1 && r < end + 1)
 	{
-		if (left[l] <= right[r])
+		if (buf[l] <= buf[r])
 		{
-			array[i] = left[l];
+			array[i] = buf[l];
 			l++;
 		}
 		else
 		{
-			array[i] = right[r];
+			array[i] = buf[r];
 			r++;
 		}
 		i++;
 	}
 	while (l < s1)
 	{
-		array[i] = left[l];
+		array[i] = buf[l];
 		l++, i++;
 	}
-	while (r < s2)
+	while (r < end + 1)
 	{
-		array[i] = right[r];
+		array[i] = buf[r];
 		r++, i++;
 	}
 	printf("[Done]: ");
